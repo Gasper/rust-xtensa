@@ -479,6 +479,9 @@ supported_targets! {
 
     ("msp430-none-elf", msp430_none_elf),
 
+    ("xtensa-esp32-none-elf", xtensa_esp32_none_elf),
+    ("xtensa-esp8266-none-elf", xtensa_esp8266_none_elf),
+
     ("aarch64-unknown-cloudabi", aarch64_unknown_cloudabi),
     ("armv7-unknown-cloudabi-eabihf", armv7_unknown_cloudabi_eabihf),
     ("i686-unknown-cloudabi", i686_unknown_cloudabi),
