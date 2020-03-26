@@ -17,7 +17,7 @@ pub fn target() -> TargetResult {
         options: TargetOptions {
             cpu: "esp8266".to_string(),
             executables: true,
-            linker: Some("xtensa-esp32-elf-ld".to_string()),
+            linker: Some("xtensa-esp32-elf-gcc".to_string()),
             max_atomic_width: Some(32),
             // Because these devices have very little resources having an
             // unwinder is too onerous so we default to "abort" because the

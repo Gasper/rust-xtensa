@@ -1,4 +1,4 @@
-use crate::spec::{abi::Abi, LinkerFlavor, LldFlavor, PanicStrategy, Target, TargetOptions, TargetResult};
+use crate::spec::{abi::Abi, LinkerFlavor, PanicStrategy, Target, TargetOptions, TargetResult};
 // use crate::spec::abi::Abi;
 
 pub fn target() -> TargetResult {
@@ -16,7 +16,7 @@ pub fn target() -> TargetResult {
 
         options: TargetOptions {
             executables: true,
-            linker: Some("xtensa-esp32-elf-ld".to_string()),
+            linker: Some("xtensa-esp32-elf-gcc".to_string()),
             max_atomic_width: Some(32),
             // Because these devices have very little resources having an
             // unwinder is too onerous so we default to "abort" because the

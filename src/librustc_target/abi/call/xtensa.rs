@@ -1,19 +1,19 @@
 // reference: https://github.com/espressif/clang-xtensa/commit/6fb488d2553f06029e6611cf81c6efbd45b56e47#diff-aa74ae1e1ab6b7149789237edb78e688R8450
 
-use crate::abi::call::{ArgType, FnType, Reg, Uniform};
+use crate::abi::call::{ArgAbi, FnAbi, Reg, Uniform};
 
 const NUM_ARG_GPR: u64 = 6;
 const MAX_ARG_IN_REGS_SIZE: u64 = 4 * 32;
 // const MAX_ARG_DIRECT_SIZE: u64 = MAX_ARG_IN_REGS_SIZE;
 const MAX_RET_IN_REGS_SIZE: u64 = 2 * 32;
 
-fn classify_ret_ty<Ty>(arg: &mut ArgType<'_, Ty>, xlen: u64) {
+fn classify_ret_ty<Ty>(arg: &mut ArgAbi<'_, Ty>, xlen: u64) {
     // The rules for return and argument types are the same, so defer to
     // classifyArgumentType.
     classify_arg_ty(arg, xlen, &mut 2); // two as max return size
 }
 
-fn classify_arg_ty<Ty>(arg: &mut ArgType<'_, Ty>, xlen: u64, remaining_gpr: &mut u64) {
+fn classify_arg_ty<Ty>(arg: &mut ArgAbi<'_, Ty>, xlen: u64, remaining_gpr: &mut u64) {
     // Determine the number of GPRs needed to pass the current argument
     // according to the ABI. 2*XLen-aligned varargs are passed in "aligned"
     // register pairs, so may consume 3 registers.
@@ -83,7 +83,7 @@ fn classify_arg_ty<Ty>(arg: &mut ArgType<'_, Ty>, xlen: u64, remaining_gpr: &mut
     // }
 }
 
-pub fn compute_abi_info<Ty>(fty: &mut FnType<'_, Ty>, xlen: u64) {
+pub fn compute_abi_info<Ty>(fty: &mut FnAbi<'_, Ty>, xlen: u64) {
     if !fty.ret.is_ignore() {
         classify_ret_ty(&mut fty.ret, xlen);
     }
