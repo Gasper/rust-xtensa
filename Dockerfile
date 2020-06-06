@@ -1,4 +1,4 @@
-FROM ubuntu:latest AS esp-tools-stage
+FROM ubuntu:bionic AS esp-tools-stage
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -12,7 +12,7 @@ WORKDIR /tmp/esp-idf/
 RUN ./install.sh
 
 
-FROM ubuntu:latest AS compiler-stage
+FROM ubuntu:bionic AS compiler-stage
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
@@ -48,7 +48,7 @@ RUN python2.7 ./x.py build
 RUN cargo install xargo
 
 
-FROM ubuntu:latest AS final-stage
+FROM ubuntu:bionic AS final-stage
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
