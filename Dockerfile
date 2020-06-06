@@ -39,7 +39,7 @@ RUN chmod -R a+w $RUSTUP_HOME $CARGO_HOME
 
 # Build rustc compiler with Xtensa support
 WORKDIR /tmp/rust-xtensa/
-COPY src /tmp/rust-xtensa/
+COPY src /tmp/rust-xtensa/src
 COPY Cargo.lock Cargo.toml configure x.py /tmp/rust-xtensa/
 RUN ./configure --experimental-targets=Xtensa
 RUN python2.7 ./x.py build
